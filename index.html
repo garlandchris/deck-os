@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deck OS - a home screen for your Home Assistant</title>
+  <meta name="description" content="Deck OS turns Home Assistant into a simple home screen for your PC and phone: lights, cameras, locks, thermostats, lists and more, for the whole family.">
+  <link rel="icon" href="img/icon.png">
+  <style>
+    :root {
+      --bg: #08090c; --panel: #11151b; --panel-2: #181e27; --line: #232c38;
+      --text: #e3ebf3; --muted: #8494a6; --accent: #32e0c4; --warm: #ff8a3d;
+      --sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      --mono: "JetBrains Mono", "Menlo", "Consolas", monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font: 16px/1.55 var(--sans); }
+    a { color: var(--accent); }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+    .brand { font: 800 20px var(--mono); letter-spacing: 3px; color: var(--accent); text-decoration: none; }
+    .brand span { color: var(--text); font-weight: 400; margin-left: 3px; }
+    nav a { color: var(--muted); text-decoration: none; margin-left: 18px; font-size: 14px; }
+    .hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; padding: 40px 0 56px; }
+    h1 { font-size: 44px; line-height: 1.1; letter-spacing: -0.5px; }
+    h1 em { font-style: normal; color: var(--accent); }
+    .lead { color: var(--muted); font-size: 18px; margin: 16px 0 24px; }
+    .btn { display: inline-block; border: 0; border-radius: 10px; padding: 13px 22px; font: 600 16px var(--sans);
+      cursor: pointer; text-decoration: none; text-align: center; }
+    .btn.primary { background: var(--accent); color: #041210; }
+    .btn.ghost { background: var(--panel-2); color: var(--text); border: 1px solid var(--line); }
+    .btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+    .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .small { font-size: 13px; color: var(--muted); }
+    .shot { border-radius: 14px; border: 1px solid var(--line); display: block; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+    .hero-shots { position: relative; }
+    .hero-shots .phone { position: absolute; width: 34%; right: -12px; bottom: -36px; border-radius: 18px; }
+    section { padding: 56px 0; border-top: 1px solid var(--line); }
+    h2 { font-size: 30px; margin-bottom: 8px; }
+    .sub { color: var(--muted); margin-bottom: 28px; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .feature { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+    .feature b { display: block; margin: 6px 0 4px; }
+    .feature p { color: var(--muted); font-size: 14px; }
+    .emoji { font-size: 26px; }
+    .gallery { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; align-items: start; }
+    .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: stretch; }
+    .plan { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 12px; }
+    .plan.best { border: 2px solid var(--accent); }
+    .tag { align-self: flex-start; font: 700 11px var(--mono); letter-spacing: 1px; color: #041210; background: var(--accent); border-radius: 999px; padding: 3px 10px; }
+    .price { font-size: 40px; font-weight: 800; }
+    .price small { font-size: 16px; color: var(--muted); font-weight: 400; }
+    .lifetime { background: var(--panel-2); border: 1px dashed var(--warm); border-radius: 10px; padding: 10px 12px; font-size: 14px; }
+    .lifetime b { color: var(--warm); }
+    .plan ul { list-style: none; display: grid; gap: 6px; font-size: 14px; color: var(--muted); }
+    .plan li::before { content: "✓ "; color: var(--accent); }
+    .plan .btns { margin-top: auto; flex-direction: column; }
+    .addons { margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; font-size: 14px; }
+    .addon { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; color: var(--muted); }
+    .addon b { color: var(--text); display: block; }
+    .download { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 28px; display: grid; gap: 16px; max-width: 640px; }
+    .agree { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; cursor: pointer; }
+    .agree input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--accent); flex: none; }
+    .steps { color: var(--muted); font-size: 14px; padding-left: 20px; display: grid; gap: 4px; }
+    details { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; margin-bottom: 10px; }
+    summary { cursor: pointer; font-weight: 600; }
+    details p { color: var(--muted); margin-top: 8px; font-size: 15px; }
+    footer { border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--muted); font-size: 13px; }
+    @media (max-width: 860px) {
+      .hero, .gallery, .plans, .addons, .features { grid-template-columns: 1fr; }
+      .features { grid-template-columns: 1fr 1fr; }
+      h1 { font-size: 34px; }
+      .hero-shots .phone { display: none; }
+      nav a:not(.keep) { display: none; }
+    }
+    @media (max-width: 480px) { .features { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="#">DECK<span>OS</span></a>
+      <nav><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a class="keep" href="#download">Download</a></nav>
+    </header>
+
+    <div class="hero">
+      <div>
+        <h1>Your whole home, on <em>one simple screen</em>.</h1>
+        <p class="lead">Deck OS turns Home Assistant into a home screen for your PC and phone. Lights, cameras,
+          locks, the thermostat, the family calendar and grocery list, all in one place. Everyone in the house
+          gets their own login.</p>
+        <div class="btns">
+          <a class="btn primary" href="#download">Download free</a>
+          <a class="btn ghost" href="#pricing">Get Pro · $4.99/mo</a>
+        </div>
+        <p class="small" style="margin-top:12px">Windows 10/11 · works with any Home Assistant · no account needed to try</p>
+      </div>
+      <div class="hero-shots">
+        <img class="shot" src="img/deck-home.png" alt="Deck OS home screen: greeting, weather, calendar and a live doorbell camera">
+        <img class="shot phone" src="img/phone-home.png" alt="Deck OS on a phone">
+      </div>
+    </div>
+
+    <section id="features">
+      <h2>Everything your home can do, without the tinkering</h2>
+      <p class="sub">Deck OS finds your devices in Home Assistant automatically and builds the screen for you.</p>
+      <div class="features">
+        <div class="feature"><span class="emoji">💡</span><b>Lights and scenes</b><p>Tap to toggle, slide to dim, pick any color. One tap for Movie Night or Bedtime.</p></div>
+        <div class="feature"><span class="emoji">🏠</span><b>Thermostat, locks, garage</b><p>See what's unlocked or left open, right on the home screen. Blinds and robot vacuum too.</p></div>
+        <div class="feature"><span class="emoji">👁</span><b>Live cameras</b><p>Your doorbell and cameras, live, on your PC or phone.</p></div>
+        <div class="feature"><span class="emoji">👨‍👩‍👧</span><b>Family accounts</b><p>Invite family with a link. Kids get bedtime and can't unlock doors. Guests expire on their own.</p></div>
+        <div class="feature"><span class="emoji">🛒</span><b>Lists and calendar</b><p>Groceries, shopping and your week ahead, shared with the house.</p></div>
+        <div class="feature"><span class="emoji">⚡</span><b>Energy</b><p>Solar, home battery and EV charging at a glance.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Looks good on the big screen and in your pocket</h2>
+      <p class="sub">Add it to your phone's home screen and it opens like an app. Five color themes.</p>
+      <div class="gallery">
+        <img class="shot" src="img/deck-devices.png" alt="Devices screen with thermostats, locks, garage, blinds, vacuum and energy">
+        <img class="shot" src="img/phone-lights.png" alt="Lights and scenes on a phone">
+        <img class="shot" src="img/phone-devices.png" alt="Devices on a phone">
+      </div>
+    </section>
+
+    <section id="pricing">
+      <h2>Simple pricing</h2>
+      <p class="sub">Start free. Upgrade when you want more. Pay by card, Apple Pay, Google Pay or PayPal.</p>
+      <div class="plans">
+        <div class="plan">
+          <h3>Free</h3>
+          <div class="price">$0</div>
+          <ul>
+            <li>Home screen built from Home Assistant</li>
+            <li>Lights, scenes, cameras, devices</li>
+            <li>Lists and calendar</li>
+            <li>Family accounts + parental controls</li>
+            <li>Up to 2 guests at a time</li>
+          </ul>
+          <div class="btns"><a class="btn ghost" href="#download">Download free</a></div>
+        </div>
+        <div class="plan best">
+          <span class="tag">MOST POPULAR</span>
+          <h3>Pro</h3>
+          <div class="price">$4.99<small>/month</small></div>
+          <ul>
+            <li>Everything in Free</li>
+            <li>Unlimited guests</li>
+            <li>Markets, Food, Movies, Clips</li>
+            <li>Voice assistant, routines, reminders</li>
+            <li>Themes and custom home screen</li>
+          </ul>
+          <div class="lifetime">Or pay once: <b>$39 lifetime</b>. Pays for itself in 8 months.</div>
+          <div class="btns">
+            <a class="btn primary" data-buy="pro_monthly">Get Pro monthly</a>
+            <a class="btn ghost" data-buy="pro_lifetime">Buy lifetime · $39</a>
+          </div>
+        </div>
+        <div class="plan">
+          <span class="tag" style="background:var(--warm)">COMING SOON</span>
+          <h3>Family</h3>
+          <div class="price">$7.99<small>/month</small></div>
+          <ul>
+            <li>Pro for 2 people</li>
+            <li>+$1.99/month for each extra family member</li>
+            <li>Pro follows each person to any home</li>
+            <li>Members who already pay for Pro don't use a spot</li>
+          </ul>
+          <div class="lifetime">Or pay once: <b>$59 lifetime</b>, +$15 per extra member.</div>
+          <div class="btns">
+            <a class="btn primary" data-buy="family_monthly">Get Family monthly</a>
+            <a class="btn ghost" data-buy="family_lifetime">Buy lifetime · $59</a>
+          </div>
+        </div>
+      </div>
+      <div class="addons">
+        <div class="addon"><b>Guest pass</b>Give a guest Pro while they stay: $0.99/month or $8 once. <i>Coming soon.</i></div>
+        <div class="addon"><b>Single packs</b>Just want one thing? Packs from $1.49/month or $12 once. <i>Coming soon.</i></div>
+        <div class="addon"><b>Gift codes</b>Buy Pro for someone else, great for teens without a card. <i>Coming soon.</i></div>
+      </div>
+      <p class="small" style="margin-top:14px">Prices in US dollars. Cancel monthly plans any time. 14-day refunds. Checkout and sales tax handled by Lemon Squeezy.</p>
+    </section>
+
+    <section id="download">
+      <h2>Download Deck OS</h2>
+      <p class="sub">Free. Nothing else to install: Deck OS brings everything it needs.</p>
+      <div class="download">
+        <label class="agree"><input type="checkbox" id="agree"> <span>I agree to the <a href="terms.html" target="_blank">Deck OS Terms of Use</a>.
+          (Short version: free for personal use at home, your data stays on your computer, and it's not a security or alarm system.)</span></label>
+        <div class="btns">
+          <a class="btn primary" id="download-btn" aria-disabled="true">⬇ Download for Windows</a>
+        </div>
+        <ol class="steps">
+          <li>Unzip the folder and open <b>README.txt</b>.</li>
+          <li>Double-click <b>Start Deck OS.bat</b>.</li>
+          <li>Paste your Home Assistant address and token. That's it.</li>
+        </ol>
+        <p class="small">Just looking? Double-click <b>Try the Demo.bat</b> for a made-up home, no Home Assistant needed. Mac and Linux: coming soon.</p>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>Questions</h2>
+      <details><summary>What do I need?</summary><p>A Windows 10 or 11 PC and Home Assistant running at home. Deck OS works with whatever devices your Home Assistant already has.</p></details>
+      <details><summary>Does my data leave my house?</summary><p>No. Deck OS runs on your computer and talks to your own Home Assistant. The only thing it sends out is a weekly check of your Pro key.</p></details>
+      <details><summary>Can I use it away from home?</summary><p>Yes, through Tailscale (free), which links your phone to your home securely. Deck OS turns away everyone else on the internet.</p></details>
+      <details><summary>How do parental controls work?</summary><p>Invite someone as a Kid and you choose which features and devices they can use, plus a bedtime. Kids can see locks and the garage but can never unlock or open them.</p></details>
+      <details><summary>What happens if I cancel Pro?</summary><p>Pro keeps working until the end of the month you paid for, then Deck OS goes back to Free. Nothing is deleted.</p></details>
+      <details><summary>Is it a security system?</summary><p>No. Deck OS is a convenience app. Keep your real alarms, smoke detectors and locks working on their own.</p></details>
+    </section>
+  </div>
+  <footer><div class="wrap">© 2026 Garland Enterprises · Deck OS · <a href="terms.html">Terms of Use</a> · Refunds within 14 days · Not affiliated with Home Assistant or Nabu Casa.</div></footer>
+
+  <script>
+    // Fill these in once the Lemon Squeezy store and GitHub release exist.
+    // An empty link shows the button as "Coming soon".
+    const LINKS = {
+      download: "https://github.com/garlandchris/deck-os/releases/latest/download/DeckOS-Windows.zip",
+      pro_monthly: "",
+      pro_lifetime: "",
+      family_monthly: "",
+      family_lifetime: "",
+    };
+    document.querySelectorAll("[data-buy]").forEach((b) => {
+      const link = LINKS[b.dataset.buy];
+      if (link) b.href = link;
+      else { b.setAttribute("aria-disabled", "true"); b.textContent += " (coming soon)"; }
+    });
+    const agree = document.getElementById("agree"), download = document.getElementById("download-btn");
+    agree.addEventListener("change", () => {
+      download.setAttribute("aria-disabled", String(!agree.checked));
+      if (agree.checked) download.href = LINKS.download; else download.removeAttribute("href");
+    });
+  </script>
+</body>
+</html>

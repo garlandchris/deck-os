@@ -1,0 +1,86 @@
+DECK OS - TERMS OF USE
+Last updated: September 28, 2026
+
+Deck OS is made and sold by Garland Enterprises ("we", "us").
+By downloading, installing or using Deck OS you agree to these terms.
+If you don't agree, don't download or use it.
+
+In short:
+  * Deck OS is free for personal use at home. Deck OS Pro is paid.
+  * It runs on your own computer. Your data stays with you.
+  * It is NOT a security, alarm or life-safety system.
+  * It comes as-is, with no guarantees.
+
+
+1. WHAT YOU MAY DO
+You may install and use Deck OS in your own home, on as many of your own
+devices as you like, for yourself, your family and your guests.
+
+You may not sell, rent or re-publish Deck OS or a changed copy of it,
+remove these terms, or get around the Pro license check.
+
+2. DECK OS PRO
+Pro is sold as a monthly subscription or a one-time lifetime purchase,
+through our checkout partner, Lemon Squeezy, who handles payment, receipts
+and sales tax.
+  * Monthly: renews each month until you cancel. Cancel any time from the
+    link in your receipt email; Pro keeps working until the end of the month
+    you paid for.
+  * Lifetime: one payment for Pro for as long as Deck OS is offered.
+    Features you already have won't be taken away.
+  * Family plans, extra family members, guest passes and gift codes work
+    as described on the Deck OS website when you buy them.
+  * Refunds: ask within 14 days of paying and you'll get your money back.
+  * A license key is for one home. Please don't share it publicly.
+  * Prices can change for new purchases; they won't change mid-way through
+    a period you've already paid for.
+
+3. YOUR HOME AND YOUR DATA
+Deck OS runs on your computer and talks to your own Home Assistant. Your
+Home Assistant token, accounts, passwords (stored scrambled), settings and
+lists stay on your computer. We don't collect them.
+
+Deck OS contacts outside services only to do what you ask: the Deck OS
+store (Lemon Squeezy) to check a Pro key about once a week, and services you
+choose to use, like map, weather, market, food and video search sources.
+
+4. NOT A SAFETY OR SECURITY SYSTEM
+Deck OS can show cameras and control locks, garage doors and other devices,
+but it is a convenience app. Do NOT rely on it to protect people or
+property. It is not a fire alarm, burglar alarm, medical alert or
+monitoring service, and it may be slow, wrong or offline. Keep your real
+alarms, smoke detectors and locks working on their own.
+
+5. KIDS AND GUESTS
+The home's owner is responsible for who they invite and what they allow.
+Parental controls help, but they're not perfect - keep an eye on kids.
+Children under 13 may only use Deck OS through an account a parent or
+guardian creates and manages.
+
+6. OTHER COMPANIES' SERVICES
+Deck OS can link to or show things from other companies (Home Assistant,
+map, video, food delivery, market and store websites and apps). They are
+not ours, have their own terms, and may change or stop working.
+
+7. NO WARRANTY
+Deck OS is provided "as is", without warranties of any kind, including
+that it will work without errors or interruptions, or fit a particular
+purpose.
+
+8. LIMIT OF LIABILITY
+To the fullest extent the law allows, Garland Enterprises is not liable
+for any indirect or consequential loss, or for damage to property, data or
+devices, from using Deck OS. Our total liability is limited to what you
+paid for Deck OS in the 12 months before the claim.
+
+9. CHANGES AND ENDING
+We may update these terms; the date at the top will change and the
+website will note it. If you stop agreeing, stop using Deck OS (and cancel
+Pro for a refund of any unused paid month). We may end a license that is
+used to break these terms.
+
+10. LAW
+These terms are governed by the laws of the State of New York, USA.
+
+QUESTIONS
+Contact: Garland Enterprises - support email coming soon.
