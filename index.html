@@ -74,6 +74,7 @@
       nav a:not(.keep) { display: none; }
     }
     @media (max-width: 480px) { .features { grid-template-columns: 1fr; } }
+  .shared-bar { background: #32e0c4; color: #041210; font-weight: 700; text-align: center; padding: 10px 16px; }
   </style>
 </head>
 <body>
@@ -111,6 +112,12 @@
         <div class="feature"><span class="emoji">👨‍👩‍👧</span><b>Family accounts</b><p>Invite family with a link. Kids get bedtime and can't unlock doors. Guests expire on their own.</p></div>
         <div class="feature"><span class="emoji">🛒</span><b>Lists and calendar</b><p>Groceries, shopping and your week ahead, shared with the house.</p></div>
         <div class="feature"><span class="emoji">⚡</span><b>Energy</b><p>Solar, home battery and EV charging at a glance.</p></div>
+        <div class="feature"><span class="emoji">📺</span><b>One remote for every TV</b><p>Power, volume, inputs and arrows for every TV, streaming stick and speaker - on your phone.</p></div>
+        <div class="feature"><span class="emoji">⏰</span><b>Alarms that actually ring</b><p>Kept by Deck OS, not your phone. They ring through Silent and Do Not Disturb until you say "I'm up".</p></div>
+        <div class="feature"><span class="emoji">🖼</span><b>Old tablets become panels</b><p>Prop a spare tablet in the kitchen or by the bed: an always-on clock, calendar, lights and family board.</p></div>
+        <div class="feature"><span class="emoji">🤖</span><b>Helpers that work for you</b><p>Hire little AI agents in one sentence - a morning briefing, closing up the house at night - and they report back.</p></div>
+        <div class="feature"><span class="emoji">🧠</span><b>Brain dump</b><p>Say or type whatever's on your mind. It sorts itself into reminders, alarms, lists and your calendar.</p></div>
+        <div class="feature"><span class="emoji">👵</span><b>Easy for Grandma</b><p>A sign-in link instead of passwords, a guided home-screen setup, Easy mode with big buttons, and a 3-minute tour.</p></div>
       </div>
     </section>
 
@@ -223,8 +230,20 @@
       family_monthly: "",
       family_lifetime: "",
     };
+    // 🎁 Shared by a friend or family member: ?from=Name&code=CODE shows who sent it and puts the discount in checkout
+    const q = new URLSearchParams(location.search);
+    const code = (q.get("code") || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 20);
+    const from = (q.get("from") || "").replace(/[^\p{L} '.-]/gu, "").slice(0, 30);
+    const off = Math.max(0, Math.min(90, parseInt(q.get("off") || "0", 10) || 0));
+    if (code || from) {
+      const bar = document.createElement("div");
+      bar.className = "shared-bar";
+      bar.textContent = `🎁 ${from ? from + " shared Deck OS with you" : "Shared with you"}${code ? ` - use code ${code}${off ? ` for ${off}% off` : ""} (it's already in the checkout)` : ""}`;
+      document.body.prepend(bar);
+    }
     document.querySelectorAll("[data-buy]").forEach((b) => {
-      const link = LINKS[b.dataset.buy];
+      let link = LINKS[b.dataset.buy];
+      if (link && code) link += (link.includes("?") ? "&" : "?") + "checkout%5Bdiscount_code%5D=" + encodeURIComponent(code);
       if (link) b.href = link;
       else { b.setAttribute("aria-disabled", "true"); b.textContent += " (coming soon)"; }
     });
