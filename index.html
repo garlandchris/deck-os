@@ -92,7 +92,7 @@
           gets their own login.</p>
         <div class="btns">
           <a class="btn primary" href="#download">Download free</a>
-          <a class="btn ghost" href="#pricing">Try Pro free for 14 days</a>
+          <a class="btn ghost" href="#pricing">Pro: coming soon</a>
         </div>
         <p class="small" style="margin-top:12px">Windows 10/11 · works with any Home Assistant · no account needed to try</p>
       </div>
@@ -161,8 +161,8 @@
           </ul>
           <div class="lifetime">Or pay once: <b>$39 lifetime</b>. Pays for itself in 8 months.</div>
           <div class="btns">
-            <a class="btn primary" data-buy="pro_monthly">Start 14-day free trial</a>
-            <a class="btn ghost" data-buy="pro_lifetime">Buy lifetime · $39</a>
+            <a class="btn primary" href="mailto:garlandenterprisesstore@gmail.com?subject=Notify%20me%20when%20Deck%20OS%20Pro%20opens&body=Hi!%20Please%20email%20me%20when%20Deck%20OS%20Pro%20is%20available.%20Thanks!">Coming soon — get notified</a>
+            <span class="btn ghost" aria-disabled="true">Lifetime · $39 (coming soon)</span>
           </div>
         </div>
         <div class="plan">
@@ -177,8 +177,8 @@
           </ul>
           <div class="lifetime">Or pay once: <b>$59 lifetime</b>, +$15 per extra member.</div>
           <div class="btns">
-            <a class="btn primary" data-buy="family_monthly">Get Family monthly</a>
-            <a class="btn ghost" data-buy="family_lifetime">Buy lifetime · $59</a>
+            <a class="btn primary" href="mailto:garlandenterprisesstore@gmail.com?subject=Notify%20me%20when%20Deck%20OS%20Family%20opens&body=Hi!%20Please%20email%20me%20when%20Deck%20OS%20Family%20is%20available.%20Thanks!">Coming soon — get notified</a>
+            <span class="btn ghost" aria-disabled="true">Lifetime · $59 (coming soon)</span>
           </div>
         </div>
       </div>
@@ -187,7 +187,7 @@
         <div class="addon"><b>Single packs</b>Just want one thing? Packs from $1.49/month or $12 once. <i>Coming soon.</i></div>
         <div class="addon"><b>Gift codes</b>Buy Pro for someone else, great for teens without a card. <i>Coming soon.</i></div>
       </div>
-      <p class="small" style="margin-top:14px">Prices in US dollars. Cancel monthly plans any time. <a href="refunds.html">14-day refunds</a>. Checkout and sales tax handled by Lemon Squeezy.</p>
+      <p class="small" style="margin-top:14px">Prices in US dollars. Cancel monthly plans any time. <a href="refunds.html">14-day refunds</a>. Paid plans open soon: tap <b>Get notified</b> and we'll email you the day they do. Checkout and sales tax will be handled by Lemon Squeezy.</p>
     </section>
 
     <section id="download">
@@ -230,6 +230,8 @@
       family_monthly: "",
       family_lifetime: "",
     };
+    // 💤 Paid plans are paused until the Lemon Squeezy store is verified - the Buy buttons above are "Get notified" for now.
+    //    To turn checkout back on: put back data-buy="pro_monthly" etc. on the buttons (LINKS below still has every checkout).
     // 🎁 Shared by a friend or family member: ?from=Name&code=CODE shows who sent it and puts the discount in checkout
     const q = new URLSearchParams(location.search);
     const code = (q.get("code") || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 20);
