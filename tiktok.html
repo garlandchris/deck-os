@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Deck OS - everything you want, one tap away</title>
+  <meta name="description" content="Alarms that ring through Silent, one remote for every TV, the family chat and tree, and old tablets as wall panels. Deck OS - for Home Assistant.">
+  <meta property="og:title" content="Deck OS - everything you want, one tap away">
+  <meta property="og:description" content="Alarms that ring through Silent, one remote for every TV, the family chat, and old tablets as wall panels.">
+  <meta property="og:image" content="img/phone-home.png">
+  <link rel="icon" href="img/icon.png">
+  <style>
+    :root { --bg: #08090c; --panel: #11151b; --panel-2: #181e27; --line: #232c38; --text: #e3ebf3; --muted: #8494a6; --accent: #32e0c4; --warm: #ff8a3d;
+      --sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif; --mono: "JetBrains Mono", "Menlo", "Consolas", monospace; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: radial-gradient(circle at 50% -10%, #0f2a26, var(--bg) 55%); color: var(--text); font: 17px/1.5 var(--sans); min-height: 100dvh; }
+    .wrap { max-width: 520px; margin: 0 auto; padding: calc(18px + env(safe-area-inset-top)) 18px 40px; }
+    .brand { font: 800 22px var(--mono); letter-spacing: 3px; color: var(--accent); text-align: center; }
+    .brand span { color: var(--text); font-weight: 400; margin-left: 3px; }
+    .bar { background: var(--accent); color: #041210; font-weight: 800; text-align: center; padding: 11px 14px; border-radius: 14px; margin: 14px 0; }
+    h1 { font-size: 34px; line-height: 1.12; text-align: center; margin: 18px 0 10px; letter-spacing: -.5px; }
+    h1 em { font-style: normal; color: var(--accent); }
+    .lead { color: var(--muted); text-align: center; margin-bottom: 18px; }
+    .shot { display: block; width: 62%; margin: 0 auto 22px; border-radius: 22px; border: 1px solid var(--line); box-shadow: 0 24px 60px rgba(0,0,0,.6); }
+    .cards { display: grid; gap: 10px; margin-bottom: 22px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: grid; grid-template-columns: 42px 1fr; gap: 4px 12px; align-items: center; }
+    .card b { font-size: 17px; } .card span { font-size: 30px; grid-row: span 2; text-align: center; } .card p { color: var(--muted); font-size: 14px; }
+    .btn { display: block; text-align: center; text-decoration: none; border-radius: 14px; padding: 16px; font: 800 18px var(--sans); margin-bottom: 10px; }
+    .btn.primary { background: var(--accent); color: #041210; } .btn.ghost { background: var(--panel-2); color: var(--text); border: 1px solid var(--line); }
+    .small { color: var(--muted); font-size: 13px; text-align: center; }
+    footer { color: var(--muted); font-size: 12px; text-align: center; margin-top: 26px; }
+    footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">DECK<span>OS</span></div>
+    <div class="bar" id="bar" hidden></div>
+    <h1>Everything you want, <em>one tap away</em></h1>
+    <p class="lead">No swiping through 20 apps. No Googling. Family chat, plans, food nearby, weather, lists, alarms that actually go off - so easy Grandma uses it.</p>
+    <img class="shot" src="img/phone-home.png" alt="Deck OS on a phone">
+    <div class="cards">
+      <div class="card"><span>👆</span><b>One tap, not 5 apps</b><p>Food nearby, the weather, today's plans, the family - each one tap from the home screen.</p></div>
+      <div class="card"><span>⏰</span><b>Alarms that ring on Silent</b><p>Kept by Deck OS, not your phone. They keep going until you tap "I'm up".</p></div>
+      <div class="card"><span>📺</span><b>One remote for every TV</b><p>Power, volume, apps - or just type "open Netflix".</p></div>
+      <div class="card"><span>🖼</span><b>Old tablets → wall panels</b><p>Clock, calendar, lights and family photos on the fridge.</p></div>
+      <div class="card"><span>🤖</span><b>Helpers that work for you</b><p>A morning briefing, the house closed up at night - hire one in a sentence.</p></div>
+      <div class="card"><span>👵</span><b>Even Grandma's in</b><p>No passwords: a sign-in link, big buttons, a 3-minute tour.</p></div>
+    </div>
+    <a class="btn primary" data-buy="pro_monthly" href="index.html#pricing">Try Pro free for 14 days</a>
+    <a class="btn ghost" href="index.html#download">Download free for Windows</a>
+    <p class="small">Works with Home Assistant · runs on your own PC · your family's stuff stays home</p>
+    <footer>© 2026 Garland Enterprises · <a href="index.html">More about Deck OS</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></footer>
+  </div>
+  <script>
+    // 🎁 ?code=TIKTOK15&off=15 (and from=...) - shown up top and already filled in at checkout
+    const LINKS = { pro_monthly: "https://deck-os.lemonsqueezy.com/checkout/buy/16d32449-f752-4df7-b53a-4f15f3a29ea0" };
+    const q = new URLSearchParams(location.search);
+    const code = (q.get("code") || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 20);
+    const from = (q.get("from") || "TikTok").replace(/[^\p{L} '.-]/gu, "").slice(0, 30);
+    const off = Math.max(0, Math.min(90, parseInt(q.get("off") || "0", 10) || 0));
+    if (code) { const b = document.getElementById("bar"); b.hidden = false; b.textContent = `🎁 From ${from}: code ${code}${off ? ` = ${off}% off` : ""} - already in the checkout`; }
+    document.querySelectorAll("[data-buy]").forEach((a) => {
+      let link = LINKS[a.dataset.buy];
+      if (link && code) link += "?checkout%5Bdiscount_code%5D=" + encodeURIComponent(code);
+      if (link) a.href = link;
+    });
+  </script>
+</body>
+</html>
