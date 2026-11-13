@@ -1,7 +1,7 @@
 DECK OS - TERMS OF USE
 Last updated: September 28, 2026
 
-Deck OS is made and sold by Garland Enterprises ("we", "us").
+Deck OS is made and sold by Garland Enterprises Holding Co L.L.C ("we", "us").
 By downloading, installing or using Deck OS you agree to these terms.
 If you don't agree, don't download or use it.
 
@@ -68,7 +68,7 @@ that it will work without errors or interruptions, or fit a particular
 purpose.
 
 8. LIMIT OF LIABILITY
-To the fullest extent the law allows, Garland Enterprises is not liable
+To the fullest extent the law allows, Garland Enterprises Holding Co L.L.C is not liable
 for any indirect or consequential loss, or for damage to property, data or
 devices, from using Deck OS. Our total liability is limited to what you
 paid for Deck OS in the 12 months before the claim.
@@ -83,4 +83,4 @@ used to break these terms.
 These terms are governed by the laws of the State of New York, USA.
 
 QUESTIONS
-Contact: Garland Enterprises - garlandenterprisesstore@gmail.com
+Contact: Garland Enterprises Holding Co L.L.C - garlandenterprisesstore@gmail.com

@@ -1,6 +1,6 @@
 # Deck OS
 
-A home screen for your Home Assistant, on your PC and phone. Made by Garland Enterprises.
+A home screen for your Home Assistant, on your PC and phone. Made by Garland Enterprises Holding Co L.L.C.
 
 - Website: https://garlandchris.github.io/deck-os/
 - Download: see [Releases](https://github.com/garlandchris/deck-os/releases/latest)
